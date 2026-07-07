@@ -1,13 +1,13 @@
-## Qwen-family-models-prompting
+# Qwen-family-models-prompting
 
-# Introduction
+## Introduction
 
 The aim of this project is to categorize responses given during political interviews into three classes:
 Clear Reply, Ambivalent, and Clear Non-Reply, using instruct-tuned language models from the
 Qwen family. Here we examine the models used and do an error analysis that led to the performance
 of the models.
 
-# Models and Methodology
+## Models and Methodology
 
 The models used from the Qwen 3.5 family are:
 – Qwen3.5-0.8B
@@ -23,7 +23,7 @@ label.
 For each of the strategies above we make the specialized prompt providing the examples and CoT
 description to show the step by step way of thinking.
 
-# Experement Results
+## Experement Results
 
 These are the results of the f1-scores from each model and strategy used to evaluate the test set of
 the dataset:
@@ -32,7 +32,7 @@ Qwen-0.8B 0.55 0.57 0.57
 Qwen-2B 0.12 0.30 0.60
 Qwen-4B 0.10 0.43 0.10
 
-# Observations and Findings:
+## Observations and Findings:
 
 – Unusual Scaling : Normally in language modeling large models always perform better than
 small ones, this does not seem to be the case in this project. Here the Qwen-0.8B model showed
@@ -48,7 +48,7 @@ stabilizing for the 4B model (0.44).
 small in size, it might contain lesser distractions, which makes it consistent when following
 basic classification instructions, despite its slightly low efficiency.
 
-# Error Analysis
+## Error Analysis
 
 – Class Difficulty: The Clear Non-Reply class is the hardest to predict. All the models strugled
 with this class probably due to the nature of such answers and how similar they sometimes are
@@ -61,7 +61,7 @@ that the answer belongs in the Clear Reply category.
 especially for the CoT strategy, would contain a separete way of thinking for each and every
 one of the Labels.
 
-# Changes:
+## Changes:
 
 – After running the model for the first time with a batch size of 8, the full extend of the available
 memory was quickly used. In order to counter that, the first measure against it was to add del
@@ -77,7 +77,7 @@ labels .
 – Added a "fallback" to the "Ambivalent" label. While this prevented code crashes, it likely
 increased our False Positive rate for that class.
 
-# Conclusion
+## Conclusion
 
 The use of the Chain-of-Thought strategy with a 2B model was more effective than utilizing a
 4B model without the suitable prompt. This shows the danger of believing that increasing the
